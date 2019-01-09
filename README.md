@@ -17,6 +17,16 @@ Estimate of time needed to complete: 40min
 
 Start time: 10:20AM
 
+Finish time: 11:05am
+
+Actual time needed to complete: 45min
+
+Number and name of feature: Feature #3
+
+Estimate of time needed to complete: 30min
+
+Start time: 11:30am
+
 Finish time: 
 
 Actual time needed to complete: 

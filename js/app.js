@@ -12,7 +12,7 @@ function Unicorn(unicornObject) {
 Unicorn.createKeywordArray = function(keyword){
   if(!Unicorn.keywordArray.includes(keyword)){
     Unicorn.keywordArray.push(keyword);
-  };
+  }
 };
 
 Unicorn.keywordArray = [];

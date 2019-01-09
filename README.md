@@ -1,6 +1,6 @@
 # lab-02
 
-The purpose of this app is to generate a page full of horned creatures using a .json file. The page has the ability for the user to filter the selection by keywords to narrow down their selection.
+The purpose of this app is to generate a page full of horned creatures using a .json file. The page has the ability for the user to filter the selection by keywords.
 
 ---
 ---

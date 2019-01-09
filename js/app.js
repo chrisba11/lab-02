@@ -23,11 +23,11 @@ Unicorn.prototype.render = function() {
   $unicornClone.addClass(this.title);
 };
 
-Unicorns.readJson = () => {
+Unicorn.readJson = () => {
   $.get('data/page-1.json', 'json')
     .then(data => {
       data.forEach(unicorn => {
-        Unicorns.allUnicorns.push( new Unicorn(unicorn) );
+        Unicorn.allUnicorns.push( new Unicorn(unicorn) );
       });
     })
     .then(Unicorn.loadUnicorns);

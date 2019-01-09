@@ -6,8 +6,16 @@ function Unicorn(unicornObject) {
   this.description = unicornObject.description;
   this.keyword = unicornObject.keyword;
   this.horns = unicornObject.horns;
+  Unicorn.createKeywordArray(this.keyword);
 }
 
+Unicorn.createKeywordArray = function(keyword){
+  if(!Unicorn.keywordArray.includes(keyword)){
+    Unicorn.keywordArray.push(keyword);
+  };
+};
+
+Unicorn.keywordArray = [];
 Unicorn.allUnicorns = [];
 
 Unicorn.prototype.render = function() {
@@ -21,6 +29,7 @@ Unicorn.prototype.render = function() {
   $unicornClone.find('p').text(this.description);
   $unicornClone.removeClass('clone');
   $unicornClone.addClass(this.title);
+  $unicornClone.attr("data-keyword", this.keyword);
 };
 
 Unicorn.readJson = () => {
@@ -35,6 +44,21 @@ Unicorn.readJson = () => {
 
 Unicorn.loadUnicorns = () => {
   Unicorn.allUnicorns.forEach( unicorn => unicorn.render());
+  Unicorn.keywordArray.forEach( keyword => {
+    $('select').append(`<option>${keyword}</option>`);
+  })
 };
 
+$('select').on('change', function() {
+  let $selection = $(this).val();
+  $('section').hide();
+  $(`section[data-keyword="${$selection}"]`).show()
+  if($selection === "default"){
+    $('section').show();
+  }
+});
+
+
 $(() => Unicorn.readJson());
+
+

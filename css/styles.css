@@ -47,16 +47,16 @@ section {
   vertical-align: middle;
 }
 
-#photo-template {
-  width: 0;
-  height: 0;
-}
-
 footer {
   clear: both;
   text-align: center;
   font-family: 'Lora', serif;
   margin-bottom: 20px;
+}
+
+#photo-template {
+  width: 0;
+  height: 0;
 }
 
 @media (min-width: 500px) {

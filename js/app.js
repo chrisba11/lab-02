@@ -21,6 +21,11 @@ Unicorn.prototype.render = function() {
 
 Unicorn.readJson1 = () => {
   Unicorn.keywordArray = [];
+  $('#filter').empty ();
+  $('#filter').append('<option value="default">Filter by Keyword</option>');
+  Unicorn.keywordArray.forEach( keyword => {
+    $('#filter').append(`<option>${keyword}</option>`);
+  })
   Unicorn.allUnicorns = [];
   $.get('data/page-1.json', 'json')
     .then(data => {
@@ -33,6 +38,11 @@ Unicorn.readJson1 = () => {
 
 Unicorn.readJson2 = () => {
   Unicorn.keywordArray = [];
+  $('#filter').empty ();
+  $('#filter').append('<option value="default">Filter by Keyword</option>');
+  Unicorn.keywordArray.forEach( keyword => {
+    $('#filter').append(`<option>${keyword}</option>`);
+  })
   Unicorn.allUnicorns = [];
   $.get('data/page-2.json', 'json')
     .then(data => {
@@ -49,21 +59,18 @@ Unicorn.prototype.toHTML = function() {
   return templateRender(this);
 }
 
-Unicorn.loadUnicorns = () => {
-  $('select').empty ();
-  $('select').append('<option value="default">Filter by Keyword</option>')
-  $('main').empty();
+Unicorn.allUnicorns = [];
 
+Unicorn.loadUnicorns = () => {
+  $('main').empty();
   Unicorn.allUnicorns.forEach( unicorn => unicorn.render());
-  Unicorn.keywordArray.forEach( keyword => {
-    $('select').append(`<option>${keyword}</option>`);
-  })
 };
+
 
 $('#page1').on('click', Unicorn.readJson1);
 $('#page2').on('click', Unicorn.readJson2);
 
-$('select').on('change', function() {
+$('#filter').on('change', function() {
   let $selection = $(this).val();
   $('section').hide();
   $(`section[data-keyword="${$selection}"]`).show()
@@ -71,5 +78,19 @@ $('select').on('change', function() {
     $('section').show();
   }
 });
+
+$('#sort').on('change', function() {
+  let $selection = $(this).val();
+  if($selection === 'title') {
+    Unicorn.allUnicorns.sort( (a,b) => (a.title.localeCompare(b.title)));
+  } else if ($selection === 'horns'){
+    Unicorn.allUnicorns.sort((a,b) => (a.horns - b.horns));
+  }
+  Unicorn.loadUnicorns();
+  let $filter = $('#filter').val();
+  $('section').hide();
+  $(`section[data-keyword="${$filter}"]`).show()
+});
+
 
 $(() => Unicorn.readJson1());

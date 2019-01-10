@@ -19,38 +19,46 @@ Unicorn.prototype.render = function() {
   $('main').append(this.toHTML());
 };
 
+Unicorn.allUnicorns = [];
+
+
+
 Unicorn.readJson1 = () => {
   Unicorn.keywordArray = [];
   $('#filter').empty ();
-  $('#filter').append('<option value="default">Filter by Keyword</option>');
-  Unicorn.keywordArray.forEach( keyword => {
-    $('#filter').append(`<option>${keyword}</option>`);
-  })
+  
   Unicorn.allUnicorns = [];
   $.get('data/page-1.json', 'json')
     .then(data => {
       data.forEach(unicorn => {
         Unicorn.allUnicorns.push( new Unicorn(unicorn) );
+        Unicorn.createKeywordArray(unicorn.keyword);
       });
     })
     .then(Unicorn.loadUnicorns);
+  $('#filter').append('<option value="default">Filter by Keyword</option>');
+  Unicorn.keywordArray.forEach( keyword => {
+    $('#filter').append(`<option>${keyword}</option>`);
+  })
 };
 
 Unicorn.readJson2 = () => {
   Unicorn.keywordArray = [];
   $('#filter').empty ();
-  $('#filter').append('<option value="default">Filter by Keyword</option>');
-  Unicorn.keywordArray.forEach( keyword => {
-    $('#filter').append(`<option>${keyword}</option>`);
-  })
+  
   Unicorn.allUnicorns = [];
   $.get('data/page-2.json', 'json')
     .then(data => {
       data.forEach(unicorn => {
         Unicorn.allUnicorns.push( new Unicorn(unicorn) );
+        Unicorn.createKeywordArray(unicorn.keyword);
       });
     })
     .then(Unicorn.loadUnicorns);
+  $('#filter').append('<option value="default">Filter by Keyword</option>');
+  Unicorn.keywordArray.forEach( keyword => {
+    $('#filter').append(`<option>${keyword}</option>`);
+  })
 };
 
 Unicorn.prototype.toHTML = function() {
@@ -81,7 +89,7 @@ $('#filter').on('change', function() {
 
 $('#sort').on('change', function() {
   let $selection = $(this).val();
-  if($selection === 'title') {
+  if($selection === "title") {
     Unicorn.allUnicorns.sort( (a,b) => (a.title.localeCompare(b.title)));
   } else if ($selection === 'horns'){
     Unicorn.allUnicorns.sort((a,b) => (a.horns - b.horns));

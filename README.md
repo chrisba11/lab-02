@@ -1,9 +1,12 @@
-# lab-02
+# lab-02 & lab-03
 
 The purpose of this app is to generate a page full of horned creatures using a .json file. The page has the ability for the user to filter the selection by keywords.
 
+
 ---
+## lab-02
 ---
+
 
 > Number and name of feature: Feature #1
 >
@@ -14,6 +17,7 @@ The purpose of this app is to generate a page full of horned creatures using a .
 > Finish time: 10:05am
 >
 > Actual time needed to complete: 40min
+
 
 
 > Number and name of feature: Feature #2
@@ -27,6 +31,7 @@ The purpose of this app is to generate a page full of horned creatures using a .
 > Actual time needed to complete: 45min
 
 
+
 > Number and name of feature: Feature #3
 >
 > Estimate of time needed to complete: 30min
@@ -38,7 +43,14 @@ The purpose of this app is to generate a page full of horned creatures using a .
 > Actual time needed to complete: 60min
 
 
-> Number and name of feature: Feature #4
+
+---
+## lab-03
+---
+
+
+
+> Number and name of feature: Feature #1
 >
 > Estimate of time needed to complete: 40Min 
 >
@@ -47,3 +59,15 @@ The purpose of this app is to generate a page full of horned creatures using a .
 > Finish time: 9:52 AM
 >
 > Actual time needed to complete: 32Min
+
+
+
+> Number and name of feature: Feature #2
+>
+> Estimate of time needed to complete:  20min
+>
+> Start time: 10:00am
+>
+> Finish time: 10:37am
+>
+> Actual time needed to complete: 37min

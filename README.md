@@ -36,3 +36,14 @@ The purpose of this app is to generate a page full of horned creatures using a .
 > Finish time: 12:30pm
 >
 > Actual time needed to complete: 60min
+
+
+> Number and name of feature: Feature #4
+>
+> Estimate of time needed to complete: 40Min 
+>
+> Start time: 9:20 AM
+>
+> Finish time: 9:52 AM
+>
+> Actual time needed to complete: 32Min

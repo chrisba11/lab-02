@@ -15,8 +15,6 @@ Unicorn.createKeywordArray = function(keyword){
   }
 };
 
-Unicorn.keywordArray = [];
-Unicorn.allUnicorns = [];
 
 Unicorn.prototype.render = function() {
   $('main').append('<section class ="clone"></section>');
@@ -28,11 +26,13 @@ Unicorn.prototype.render = function() {
   $unicornClone.find('img').attr('src', this.image_url);
   $unicornClone.find('p').text(this.description);
   $unicornClone.removeClass('clone');
-  $unicornClone.addClass(this.title);
+  $unicornClone.addClass('not-template');
   $unicornClone.attr("data-keyword", this.keyword);
 };
 
-Unicorn.readJson = () => {
+Unicorn.readJson1 = () => {
+  Unicorn.keywordArray = [];
+  Unicorn.allUnicorns = [];
   $.get('data/page-1.json', 'json')
     .then(data => {
       data.forEach(unicorn => {
@@ -42,12 +42,33 @@ Unicorn.readJson = () => {
     .then(Unicorn.loadUnicorns);
 };
 
+Unicorn.readJson2 = () => {
+  Unicorn.keywordArray = [];
+  Unicorn.allUnicorns = [];
+  $.get('data/page-2.json', 'json')
+    .then(data => {
+      data.forEach(unicorn => {
+        Unicorn.allUnicorns.push( new Unicorn(unicorn) );
+      });
+    })
+    .then(Unicorn.loadUnicorns);
+};
+
+
+
 Unicorn.loadUnicorns = () => {
+  $('select').empty ();
+  $('select').append('<option value="default">Filter by Keyword</option>')
+  $('.not-template').remove();
+  
   Unicorn.allUnicorns.forEach( unicorn => unicorn.render());
   Unicorn.keywordArray.forEach( keyword => {
     $('select').append(`<option>${keyword}</option>`);
   })
 };
+
+$('#page1').on('click', Unicorn.readJson1);
+$('#page2').on('click', Unicorn.readJson2);
 
 $('select').on('change', function() {
   let $selection = $(this).val();
@@ -59,6 +80,10 @@ $('select').on('change', function() {
 });
 
 
-$(() => Unicorn.readJson());
+
+
+$(() => Unicorn.readJson1());
+
+
 
 

@@ -15,19 +15,8 @@ Unicorn.createKeywordArray = function(keyword){
   }
 };
 
-
 Unicorn.prototype.render = function() {
-  $('main').append('<section class ="clone"></section>');
-  const $unicornClone = $('section[class="clone"]');
-  const $unicornHtml = $('#photo-template').html();
-  $unicornClone.html($unicornHtml);
-
-  $unicornClone.find('h2').text(this.title);
-  $unicornClone.find('img').attr('src', this.image_url);
-  $unicornClone.find('p').text(this.description);
-  $unicornClone.removeClass('clone');
-  $unicornClone.addClass('not-template');
-  $unicornClone.attr("data-keyword", this.keyword);
+  $('main').append(this.toHTML());
 };
 
 Unicorn.readJson1 = () => {
@@ -54,13 +43,17 @@ Unicorn.readJson2 = () => {
     .then(Unicorn.loadUnicorns);
 };
 
-
+Unicorn.prototype.toHTML = function() {
+  let $htmlTemplate = $('#unicorn-template').html();
+  let templateRender = Handlebars.compile($htmlTemplate);
+  return templateRender(this);
+}
 
 Unicorn.loadUnicorns = () => {
   $('select').empty ();
   $('select').append('<option value="default">Filter by Keyword</option>')
-  $('.not-template').remove();
-  
+  $('main').empty();
+
   Unicorn.allUnicorns.forEach( unicorn => unicorn.render());
   Unicorn.keywordArray.forEach( keyword => {
     $('select').append(`<option>${keyword}</option>`);
@@ -74,16 +67,9 @@ $('select').on('change', function() {
   let $selection = $(this).val();
   $('section').hide();
   $(`section[data-keyword="${$selection}"]`).show()
-  if($selection === "default"){
+  if($selection === 'default'){
     $('section').show();
   }
 });
 
-
-
-
 $(() => Unicorn.readJson1());
-
-
-
-
